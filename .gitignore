@@ -193,3 +193,8 @@ FakesAssemblies/
 TestResults.xml
 
 release.cmd
+
+/paket-files/
+/.fake/
+/.vs/
+
