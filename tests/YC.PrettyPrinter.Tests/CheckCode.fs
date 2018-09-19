@@ -3,7 +3,7 @@ open NUnit.Framework
 open System.IO
 
 let path = "../../../InOut"
-   
+
 let filesAreEqual file1 file2 =
     let all1 = File.ReadAllBytes file1
     let all2 = File.ReadAllBytes file2
@@ -13,19 +13,19 @@ module ``1YC Prnters`` =
     open YC.PrettyPrinter.Tests.YCLPrinter
 
     [<TestFixture>]
-    type ``YCPrinter Generator``() = 
-        static member TestData = 
+    type ``YCPrinter Generator``() =
+        static member TestData =
             [|
                 (10, A, A, "RunTest.in", "RunTest.ycp");
-            
+
                 (2, A, A, "Combine.in", "CombineAb.ycp");
                 (10, A, A, "Combine.in", "CombineBe.ycp");
-            
+
                 (10, A, A, "while.in", "whileA.ycp");
                 (10, A, B, "while.in", "whileB.ycp");
                 (10, A, AB,"while.in", "whileAB.ycp");
                 (5, A, AB, "while.in", "whileW.ycp");
-            
+
                 (10, A, A, "while+expr.in", "while+expr.ycp");
 
                 (10, A, A, "If.in", "ifA.ycp");
@@ -46,7 +46,7 @@ module ``1YC Prnters`` =
             |]
 
         [<Test>]
-        member x.``Check Run``() = 
+        member x.``Check Run``() =
             let inp = Path.Combine(path, "RunTest.in")
             let outp = Path.Combine(path, "RunTest.run")
 
@@ -57,7 +57,7 @@ module ``1YC Prnters`` =
             ()
 
         [<TestCaseSource("TestData")>]
-        member x.``Generate Code``((wid : int, iF, wH, input, out)) = 
+        member x.``Generate Code``((wid : int, iF, wH, input, out)) =
             let inp = Path.Combine(path, input)
             let outp = Path.Combine(path, out)
 
@@ -69,21 +69,21 @@ module ``1YC Prnters`` =
 
 module ``2SFormat Generator`` =
     open YC.PrettyPrinter.Tests.FsxLPrinter
-           
+
     [<TestFixture>]
-    type ``SFormatPrinter``() =   
-        static member TestData = 
+    type ``SFormatPrinter``() =
+        static member TestData =
             [|
                 (10, A, A, "RunTest.in", "RunTest.fxp");
-            
+
                 (2, A, A, "Combine.in", "CombineAb.fxp");
                 (10, A, A, "Combine.in", "CombineBe.fxp");
-            
+
                 (10, A, A, "while.in", "whileA.fxp");
                 (10, A, B, "while.in", "whileB.fxp");
                 (10, A, AB,"while.in", "whileAB.fxp");
                 (5, A, AB, "while.in", "whileW.fxp");
-            
+
                 (10, A, A, "while+expr.in", "while+expr.fxp");
 
                 (10, A, A, "If.in", "ifA.fxp");
@@ -94,7 +94,7 @@ module ``2SFormat Generator`` =
                 (25, A, A, "LowTree.in", "LowTreeAA.fxp");
                 (25, A, B, "LowTree.in", "LowTreeAB.fxp");
                 (25, B, B, "LowTree.in", "LowTreeBB.fxp");
-                (25, B, A, "LowTree.in", "LowTreeBA.fxp");            
+                (25, B, A, "LowTree.in", "LowTreeBA.fxp");
                 (25, AB, AB, "LowTree.in", "LowTreeAbAb.fxp");
                 (20, A, A, "LowTree.in", "LowTreeW.fxp");
 
@@ -102,9 +102,9 @@ module ``2SFormat Generator`` =
                 (50, B, B, "HardTree.in", "HardTreeBB.fxp");
                 (50, AB, AB, "HardTree.in", "HardTreeAB.fxp");
             |]
-        
+
         [<Test>]
-        member x.``Check Run``() = 
+        member x.``Check Run``() =
             let inp = Path.Combine(path, "RunTest.in")
             let outp = Path.Combine(path, "RunTest.run")
 
@@ -115,7 +115,7 @@ module ``2SFormat Generator`` =
             ()
 
         [<TestCaseSource("TestData")>]
-        member x.``Generate Code``((wid : int, iF, wH, input, out)) = 
+        member x.``Generate Code``((wid : int, iF, wH, input, out)) =
             let inp = Path.Combine(path, input)
             let outp = Path.Combine(path, out)
 
@@ -128,14 +128,14 @@ module ``2SFormat Generator`` =
 
 module ``3CheckEquals`` =
     [<TestFixture>]
-    type ``Equals Code``() = 
-        static member TestData = 
+    type ``Equals Code``() =
+        static member TestData =
             [|
                 ("RunTest.ycp", "RunTest.fxp");
-            
+
                 ("CombineAb.ycp", "CombineAb.fxp");
                 ("CombineBe.ycp", "CombineBe.fxp");
-            
+
                 ("whileA.ycp", "whileA.fxp");
                 ("whileB.ycp", "whileB.fxp");
                 ("whileAB.ycp", "whileAB.fxp");
@@ -161,21 +161,21 @@ module ``3CheckEquals`` =
             |]
 
         [<TestCaseSource("TestData")>]
-        member x.``Are Equals``((f1, f2)) = 
+        member x.``Are Equals``((f1, f2)) =
             let усpath = Path.Combine(path, f1)
             let fxpath = Path.Combine(path, f2)
 
             let file1 = File.ReadAllBytes(усpath)
             let file2 = File.ReadAllBytes(fxpath)
 
-            if file1.Length <> file2.Length 
+            if file1.Length <> file2.Length
             then printfn "Difference between %A, and %A" f1 f2
 
 module ``4xSpeed`` =
     open YC.PrettyPrinter.Tests
     [<TestFixture>]
-    type ``xSpeedTest``() = 
-        static member TestData = 
+    type ``xSpeedTest``() =
+        static member TestData =
             [|
                 ("xSpeed/x1.in");
                 ("xSpeed/x2.in");
@@ -202,7 +202,7 @@ module ``4xSpeed`` =
                 let str1 = fsxPrinter.Print(text)
                 timer.Stop()
                 timeFX <- timeFX + timer.Elapsed.TotalMilliseconds
-                
+
                 timer.Restart()
                 let str2 = ycPrinter.Print(text)
                 timer.Stop()
@@ -225,14 +225,14 @@ module ``5Perfomanse`` =
         let str1 = fsxPrinter.Print(text)
         timer.Stop()
         let timeFX = timer.Elapsed.TotalMilliseconds
-    
+
         timer.Restart()
         let str2 = ycPrinter.Print(text)
         timer.Stop()
-    
+
         let timeYC = timer.Elapsed.TotalMilliseconds
-        
+
         File.WriteAllText(Path.Combine(path, "PerfomanceTree.fxp"), str1)
         File.WriteAllText(Path.Combine(path, "PerfomanceTree.ycp"), str2)
-        if timeFX <> timeYC 
+        if timeFX <> timeYC
         then printfn "Difference between timeFX %A, and timeYC %A" timeFX timeYC

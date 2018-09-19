@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{63297B98-5CED-492C-A5B7-A5B4F73CF142}"
 	ProjectSection(SolutionItems) = preProject
@@ -72,6 +72,9 @@ Global
 		{8F1F5EDD-4A46-4948-AF8D-C878FA946B31} = {ED8079DD-2B06-4030-9F0F-DC548F98E1C4}
 		{4C17BF65-9F5A-45B8-8CFB-84F874B6DA81} = {ED8079DD-2B06-4030-9F0F-DC548F98E1C4}
 		{78B2FA30-9298-4E58-8343-A88006EAF384} = {ED8079DD-2B06-4030-9F0F-DC548F98E1C4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64012A01-1056-4E02-8FE5-06B207BC49B4}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = src\test\test.fsproj

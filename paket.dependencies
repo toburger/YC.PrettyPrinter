@@ -1,11 +1,13 @@
 source https://nuget.org/api/v2
 
+framework: net471
+
 nuget FSharp.Core
 nuget FSharp.Formatting
 nuget FSharpVSPowerTools.Core
-nuget NUnit 
+nuget NUnit
 nuget NUnit.Runners
-nuget FAKE
+nuget FAKE ~> 4
 nuget SourceLink.Fake
 
 
